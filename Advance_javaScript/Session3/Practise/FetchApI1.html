@@ -1,0 +1,44 @@
+<!-- 
+Fetch: It is a method of window.
+The fetch() method starts the process of fetching a resource from a server.
+The fetch() method returns a Promise that resolves to a Response object.
+===============
+-->
+
+<button onclick="getUsers()">Download</button>
+<div id="data"></div>
+<h1 style="display: none;" id="loader">Please wait... data is downloading</h1>
+
+<script>
+    async function getUsers(){
+        document.getElementById('loader').style.display='inline-block'
+        try {
+            var response = await window.fetch("https://jsonplaceholder.typicode.com/users")
+            console.log(response)
+            var data = await response.json()
+            setData(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    function setData(data) {
+        var p1 = data
+        var result = "<table style='font-size:22px;' align='center 'border=1 cellspacing=0>"
+        result += "<tr><th rowspan=3>name</th><th rowspan=3>username</th><th rowspan=3>email</th><th colspan=6>address</th><th rowspan=3>phone</th><th rowspan=3>website</th><th colspan=3>company</th></tr>"
+        result += " <tr><td rowspan=2>street</td><td rowspan=2>suite</td><td rowspan=2>city</td><td rowspan=2>ipcode</td><td colspan=2>geo </td><td rowspan=2>name</td><td rowspan=2>ctchphrse</td><td rowspan=2>BS</td></tr>"
+        result += "<tr><td>longitude</td><td>ltitude</td></tr>"
+
+        for (let index = 0; index < p1.length; index++) {
+            const element = p1[index];
+            var key = Object.keys(element)
+            var values = Object.values(element)
+            result += "<tr align='center'><td>" + element["name"] + "</td>"
+            result += "<td>" + element["username"] + "</td><td>" + element["email"] + "</td><td>" + element["address"]["street"] + "</td><td>" + element["address"]["suite"] + "</td><td>" + element["address"]["city"] + "</td><td>" + element["address"]["zipcode"] + "</td><td>" + element["address"]["geo"]["lat"] + "</td><td>" + element["address"]["geo"]["lng"] + "</td><td>" + element["phone"] + "</td><td>" + element["website"] + "</td><td>" + element["company"]["name"] + "</td><td>" + element["company"]["catchPhrase"] + "</td><td>" + element["company"]["bs"] + "</td>"
+            result += "</tr>"
+        }
+        result += "</table>"
+        document.getElementById('data').innerHTML = result
+        document.getElementById('loader').style.display = 'none'
+
+    }
+</script>
