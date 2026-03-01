@@ -1,0 +1,14 @@
+Redux:
+1.It is a library which is used for state management.
+2.It is not tied with React,It can be used with Angular,Vue,React Native etc.
+3.It stores state of our application.
+
+1.Store 
+2.Action 
+3.Reducer
+
+Store :
+1.It allows access to state via getState() method 
+2.It allows state to be updated via dispatch(action)
+3.It register listener via subscribe() method 
+4.Unregister listener via method return by subscribe() method 

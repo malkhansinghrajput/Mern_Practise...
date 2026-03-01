@@ -1,0 +1,60 @@
+import { createStore } from 'redux'
+
+//ACTION TYPES
+const ACTION_TYPE_1 = "WITHDRAW"
+const ACTION_TYPE_2 = "DEPOSIT"
+
+//ACTIONS
+const action1 = {
+    type: ACTION_TYPE_1
+}
+const action2 = {
+    type: ACTION_TYPE_2
+}
+
+//ACTION CREATORS:Wrapper Function which returns actions
+const withdrawAmt = () => {
+    return action1
+}
+const depositAmt = () => {
+    return action2
+}
+
+//REDUCER
+const initialState = {
+    balance: 12345.12
+}
+const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case ACTION_TYPE_1: return {
+            ...state,
+            balance: state.balance - 100
+        }
+        case ACTION_TYPE_2: return {
+            ...state,
+            balance: state.balance + 100
+        }
+        default: return state
+    }
+}
+
+const store = createStore(reducer)
+console.log("Initial State:",store.getState())
+const unsubscribe = store.subscribe(()=>{
+    console.log("Updated State:",store.getState())
+})
+
+store.dispatch(withdrawAmt())
+store.dispatch(withdrawAmt())
+store.dispatch(withdrawAmt())
+store.dispatch(withdrawAmt())
+store.dispatch(depositAmt())
+store.dispatch(depositAmt())
+store.dispatch(depositAmt())
+store.dispatch(depositAmt())
+
+// unsubscribe()
+store.dispatch(depositAmt())
+store.dispatch(depositAmt())
+store.dispatch(withdrawAmt())
+store.dispatch(withdrawAmt())
