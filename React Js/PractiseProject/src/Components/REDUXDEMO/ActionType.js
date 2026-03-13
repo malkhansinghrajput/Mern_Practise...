@@ -1,0 +1,6 @@
+export const ACTION_TYPE_1 = "WITHDRW"
+export const ACTION_TYPE_2 = "DEPOSITE"
+export const ACTION_TYPE_3 = "ICICI_WITHDRAW"
+export const ACTION_TYPE_4 = "ICICI_DEPOSIT"
+export const ACTION_TYPE_5 = "SBI_WITHDRAW"
+export const ACTION_TYPE_6 = "SBI_DEPOSITE"
